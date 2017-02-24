@@ -1,5 +1,4 @@
-# 1
-Xi Yuan Zhi Lu
+# Xi Yuan Zhi Lu
 <table>
   <tr></tr>
   <tr>
