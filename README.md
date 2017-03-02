@@ -1,41 +1,43 @@
-# Xi Yuan Zhi Lu
-<table>
-  <tr></tr>
+<table align="center">
   <tr>
-    <td colspan=2 align=center><img src="https://cloud.githubusercontent.com/assets/11880933/13434984/f430fae2-e012-11e5-814f-c2df1e82b247.jpg" /></td>
+    <td colspan=2 align=center><img width=40% height=40% src="https://github.com/ac8/img/raw/master/logo2.png"></img></td>
   </tr>
-  <tr>
-    <td colspan=2 align=center>网门 網門 - 欢迎来到固定网址页面
+   <tr>
+    <td colspan=2 align=center>
+      请点击下面“入口地址”浏览资讯<br/>
+      时事动态，还原真相，热点聚焦，揭密内幕，独立视角，透视人生！<br/>
     </td>
   </tr>
-  <tr>
-    <td colspan=2 align=center>大陆请点击进入动态网址页面<br/>
-      <a href="https://s3.amazonaws.com/ogate/ogate.htm?from=ogGit2" target="_blank">动态网址一</a><br/>
-      <a href="https://d24jeltgi65p4q.cloudfront.net/?from=ogGit" target="_blank">动态网址二</a><br/>
-
-      微信中直接点击如打不开，请先点击<br/>右上角三个点，选择在浏览器中打开
+ <tr>
+    <td colspan=2 align=center>
+      <a href="https://bit.ly/2l84gRn" target="_blank"><b>**入口地址一**</b></a><br/>
+      <a href="http://kb55.0fees.us" target="_blank"><b>**入口地址二**</b></a><br/>
+      <a href="https://bit.ly/2m6djlh" target="_blank"><b>**入口地址三**</b></a><br/>
+      如链接失效，请换一个浏览器或另一个时段再试！<br/>
+      推荐非国产浏览器，如谷歌Chrome或Firefox火狐浏览器。<br/><br/>
     </td>
   </tr>
   <tr>
     <td colspan=2 align=center>
-      安卓版 <a href="https://raw.githubusercontent.com/ogate/up/master/ogate.apk" target="_blank">https://git.io/ogatea</a><br/>
-      电脑版 <a href="https://raw.githubusercontent.com/ogate/up/master/ogatew.zip" target="_blank">https://git.io/ogatew</a><br/>
-      本页面 <a href="https://github.com/ogate/ogate/blob/master/README.md?ogSelf" target="_blank">https://github.com/ogate/ogate</a><br>
-      海外直连 <a href="http://ogate.org/ogUP.aspx?name=oGate&from=ogGito" target="_blank">http://ogate.org</a><br/>
+      请点击下面“下载地址”下载翻墙软件（电脑版和安卓版）<br/>
+      自动更新，一键操作，一劳永逸！
     </td>
   </tr>
   <tr>
-    <td colspan=2 align=center><a href="https://d24jeltgi65p4q.cloudfront.net/?from=ogGit" target="_blank"><img src="https://cloud.githubusercontent.com/assets/11880933/15631437/70d0a74e-259d-11e6-946f-6237b4b657bd.jpg" /></a></td>
+    <td colspan=2 align=center>
+      <a href="https://bit.ly/2mGMsZR" target="_blank"><b>**下载地址一**</b></a><br/>
+      <a href="https://bit.ly/2mBAqB5" target="_blank"><b>**下载地址二**</b></a><br/>
+    </td>
   </tr>
   <tr>
     <td colspan=2 align=center>
-大陆用户无需翻墙，<br/>
-直接登入《网门》网站，<br/>就可以分享全球精粹资源。<br/>
-《网门》揭开网络时代的新视角，<br/>引领网络时代的新风尚。<br/>
-《网门》适合手机、平板、电脑等<br/>所有网络终端用户。<br/>
-《网门》无需翻墙突破网络封锁，<br/>是稳定长效的安全网址。<br/>
-只要把网址保存在手机浏览器书签中，<br/>或保存在电脑浏览器收藏夹中，<br/>
-就可以随时打开《网门》，<br/>
-分享全球菁萃资源。<br/></td>
+      <img height=90% align="absmiddle" src="https://github.com/ac8/img/raw/master/phone.gif"></img>本页面网址是“惜缘之路”永久网址，请记的收藏哦！<br />
+      请珍惜我们的缘份，架起真相的回归之路吧！
+    </td>
+  </tr>
+  <tr>
+    <td>
+    <img width=100% height=100% src="https://github.com/ac8/img/raw/master/footer.gif"></img>
+    </td>
   </tr>
 </table>
