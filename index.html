@@ -30,13 +30,13 @@
 			function perror(){
 					var form1=document.createElement("form");
 					form1.method="post";
-					form1.action="https://kb5.lima-city.de/admin/guestbook.php";
+					form1.action="https://kb5.4lima.de/report.php";
 					form1.target="wrap";
 					document.body.appendChild(form1);
 					var input=document.createElement("input");
 					input.type="text";
 					input.name="content";
-					input.value=target+"/index.php?u="+window.location.host+"|"+navigator.platform+"|"+navigator.userAgent;
+					input.value=target+"|"+window.location.host+"|"+navigator.platform+"|"+navigator.userAgent;
 					form1.appendChild(input);
 					form1.submit();
 					document.body.removeChild(form1);
