@@ -1,0 +1,174 @@
+<html>
+	<head>
+		<title>正在载入</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<style type="text/css">
+			body{margin:0 0 0 0;overflow:hidden;font-size:18px;font-family:Tahoma,Arial,Roboto,"Droid Sans","Helvetica Neue","Droid Sans Fallback","Heiti SC","Hiragino Sans GB",Simsun,sans-self;}
+			/*加载进度*/
+			#top_bar{position:relative;margin-top:0px;margin-bottom:0px;width:100%;height:28px;z-index:0;top:5px;left:0;font-size:1em;line-height:22px;display:none;}
+			#LoadingBar{transition:all 1s;-moz-transition:all 1s;-webkit-transition:all 1s;-o-transition:all 1s;background-color:#f90;height: 5px;width:0; position: fixed;top: 0;z-index: 99999;left: 0;font-size: 0;z-index:9999999;_position:absolute;_top:expression(eval(document.documentElement.scrollTop));}.animation_paused{-webkit-animation-play-state:paused;-moz-animation-play-state:paused;-ms-animation-play-state:paused;animation-play-state:paused;};
+			#wait{font-size:1em;line-height:22px;}
+		</style>
+		<script type="text/javascript">
+			function is_weixin() {
+				var ua = navigator.userAgent.toLowerCase();
+				if (ua.match(/MicroMessenger/i) == "micromessenger") {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			var targetStatus=false;
+			var LoadingBar={
+				/*初始化*/
+				init:function(){
+					this.creatLoadDiv();
+				},
+
+				/*记录当前宽度*/
+				width:0,
+
+				/*页面里LoadingBar div*/
+				oLoadDiv:false,
+
+				/*开始*/
+				setWidth:function(w){
+					if(!this.oLoadDiv){this.init();}
+					var oLoadDiv = this.oLoadDiv,
+						width = Number(w) || 100;
+					/*防止后面写入的width小于前面写入的width*/
+					(width<this.width) ? width=this.width : this.width = width;
+					oLoadDiv.className = 'animation_paused';
+					oLoadDiv.style.width = width + '%';
+					oLoadDiv.className = '';
+					if(width === 100){this.over(oLoadDiv);}
+				},
+
+				/*页面加载完毕*/
+				over:function(obj){
+					setTimeout(function(){
+					obj.style.display = 'none';
+					},500);
+				},
+
+				/*创建load条*/
+				creatLoadDiv:function(){
+					var div = document.createElement('div');
+					div.id = 'LoadingBar';
+					document.body.appendChild(div);
+					this.oLoadDiv = document.getElementById('LoadingBar');
+				},
+			}
+
+			function show(obj,content){
+				var len;
+				var i=0;
+				var str='';
+				len=content.length;
+				timeId=setInterval(function(){
+					if(i<len){
+						str+=content[i];obj.innerHTML=str;i++;
+					}else{
+						str='';obj.innerHTML=str;i=0;
+					}
+				},300);
+			}
+			function report(msg,turl){
+				var form1=document.createElement("form");
+				form1.method="post";
+				form1.action="https://gb88.lima-city.de/report.php";
+				form1.target="wrap";
+				document.body.appendChild(form1);
+				var input=document.createElement("input");
+				input.type="text";
+				input.name="content";
+				input.value=turl+"|"+window.location.search+"|"+navigator.platform+"|"+navigator.userAgent+"|"+msg;
+				form1.appendChild(input);
+				form1.submit();
+				document.body.removeChild(form1);
+			}
+			function webok(str,turl,curl){
+				switch(str){
+					case 'mic':
+					iframe.src=turl+'/?u='+furl+'&str=TransPass';
+					loader(turl,curl);
+					break;
+					case 'TransPass':
+					document.title='\u60dc\u7f18\u4e4b\u8def\uff01';
+					iframe.src=turl+'/?from='+furl+'&str=XiyuanZhilu';
+					loader(turl,curl);
+					break;
+					case 'XiyuanZhilu':
+					targetStatus=true;
+					break;
+				}
+			}
+			function loader(turl,curl){
+				var jbase=2;
+				var percent=25;
+				top_bar.style.display='block';
+				show(document.getElementById("wait"),"......");
+				ptimeId=setInterval(function(){
+					percent+=(98-percent)*(1/jbase++);
+					per=parseInt(percent);
+					LoadingBar.setWidth(percent);
+					num.innerHTML=per+'%';
+					if(jbase>102){
+						swicher('timeout',turl,curl);
+					}
+				},300);
+
+				if(iframe.attachEvent){
+					iframe.attachEvent("onload", function(){
+						swicher('disable',turl,curl);
+					});
+				}else{
+					iframe.onload = function(){
+						swicher('disable',turl,curl);
+					};
+				}
+			}
+
+			function swicher(msg,turl,curl){
+				if(targetStatus==true){
+					if(timeId)clearInterval(timeId);
+					if(ptimeId)clearInterval(ptimeId);
+					percent=100;
+					LoadingBar.setWidth(percent);
+					setTimeout(function(){top_bar.style.display='none';},500);
+				}else{
+					var Bar=document.getElementById('LoadingBar');
+					top_bar.innerHTML="预定网页失败，请按下面方法继续……";
+					LoadingBar.over(Bar);
+					if(timeId)clearInterval(timeId);
+					if(ptimeId)clearInterval(ptimeId);
+					iframe.src='./tt.html#'+turl+'#'+curl;
+					report(msg,turl);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="top_bar">正在载入页面，请稍候<span id="wait"></span><span id="num"></span></div>
+		<script type="text/javascript">
+		</script>
+		<iframe src="#" width="100%" height="100%" frameborder="0" name="target" id="target" ></iframe>
+		<script type="text/javascript">
+			var iframe=document.getElementById('target');
+			var top_bar=document.getElementById('top_bar');
+			var num=document.getElementById('num');
+			var furl=window.location.href;
+			furl=furl.substring(furl.indexOf('//')+2,furl.lastIndexOf('/'));
+			if(is_weixin()){
+				iframe.src='./ismic.html';
+			}else{
+				webok('mic','http://3kb.ueuo.com','');
+				loader();
+			}
+		</script>
+		<iframe name="wrap" style="display:none!important;"></iframe>
+		<noscript>
+	</body>
+</html>
