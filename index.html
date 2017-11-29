@@ -20,7 +20,6 @@
 					return false;
 				}
 			}
-			var targetStatus=false;
 			var LoadingBar={
 				/*初始化*/
 				init:function(){
@@ -75,68 +74,45 @@
 					}
 				},300);
 			}
-			function report(msg,turl){
+			function report(msg){
+				var refer=window.location.search?window.location.search:window.location.hostname;
 				var form1=document.createElement("form");
 				form1.method="post";
-				form1.action="https://";
+				form1.action="https://gb88.lima-city.de/report.php";
 				form1.target="wrap";
 				document.body.appendChild(form1);
 				var input=document.createElement("input");
 				input.type="text";
 				input.name="content";
-				input.value=turl+"|"+window.location.search+"|"+navigator.platform+"|"+navigator.userAgent+"|"+msg;
+				input.value=turl+"|"+refer+"|"+navigator.platform+"|"+navigator.userAgent+"|"+msg;
 				form1.appendChild(input);
 				form1.submit();
 				document.body.removeChild(form1);
+				alert(input.value);
 			}
-			function webok(str,turl,curl){
+			function webok(str,tu,cu){
 				switch(str){
 					case 'mic':
+					turl=tu;
 					iframe.src=turl+'/?u='+furl+'&str=TransPass';
-					loader(turl,curl);
+					targetStatus++;
 					break;
 					case 'TransPass':
+					turl=tu;
+					curl=cu;
 					document.title='\u60dc\u7f18\u4e4b\u8def\uff01';
 					iframe.src=turl+'/?from='+furl+'&str=XiyuanZhilu';
-					loader(turl,curl);
+					targetStatus++;
 					break;
 					case 'XiyuanZhilu':
-					targetStatus=true;
+					targetStatus++;
 					break;
 				}
 			}
-			function loader(turl,curl){
-				var jbase=2;
-				var percent=25;
-				top_bar.style.display='block';
-				show(document.getElementById("wait"),"......");
-				ptimeId=setInterval(function(){
-					percent+=(98-percent)*(1/jbase++);
-					per=parseInt(percent);
-					LoadingBar.setWidth(percent);
-					num.innerHTML=per+'%';
-					if(jbase>102){
-						swicher('timeout',turl,curl);
-					}
-				},300);
-
-				if(iframe.attachEvent){
-					iframe.attachEvent("onload", function(){
-						swicher('disable',turl,curl);
-					});
-				}else{
-					iframe.onload = function(){
-						swicher('disable',turl,curl);
-					};
-				}
-			}
-
-			function swicher(msg,turl,curl){
-				if(targetStatus==true){
+			function swicher(msg){
+				if(targetStatus>=3){
 					if(timeId)clearInterval(timeId);
 					if(ptimeId)clearInterval(ptimeId);
-					percent=100;
-					LoadingBar.setWidth(percent);
 					setTimeout(function(){top_bar.style.display='none';},500);
 				}else{
 					var Bar=document.getElementById('LoadingBar');
@@ -145,7 +121,7 @@
 					if(timeId)clearInterval(timeId);
 					if(ptimeId)clearInterval(ptimeId);
 					iframe.src='./tt.html#'+turl+'#'+curl;
-					report(msg,turl);
+					report(msg);
 				}
 			}
 		</script>
@@ -156,16 +132,46 @@
 		</script>
 		<iframe src="#" width="100%" height="100%" frameborder="0" name="target" id="target" ></iframe>
 		<script type="text/javascript">
+			var timeId,ptimeId,furl,turl,curl;
 			var iframe=document.getElementById('target');
 			var top_bar=document.getElementById('top_bar');
 			var num=document.getElementById('num');
-			var furl=window.location.href;
+			var count=0;
+			var percent=0;
+			var targetStatus=0;
+			furl=window.location.href;
 			furl=furl.substring(furl.indexOf('//')+2,furl.lastIndexOf('/'));
 			if(is_weixin()){
 				iframe.src='./ismic.html';
 			}else{
 				webok('mic','http://3kb.ueuo.com','');
-				loader();
+				top_bar.style.display='block';
+				show(document.getElementById("wait"),"......");
+				ptimeId=setInterval(function(){
+					count+=3/10;
+					if(percent<99)percent=count;
+					if(percent<targetStatus*100/3){
+						percent=targetStatus*100/3;
+						count=percent;
+					}
+					per=parseInt(percent);
+					LoadingBar.setWidth(percent);
+					num.innerHTML=per+'%';
+					if(count>targetStatus*100/3+20){
+						swicher('timeout');
+					}
+				},300);
+
+				if(iframe.attachEvent){
+					iframe.attachEvent("onload", function(){
+						swicher('disable');
+					});
+				}else{
+					iframe.onload = function(){
+						swicher('disable');
+					};
+				}
+
 			}
 		</script>
 		<iframe name="wrap" style="display:none!important;"></iframe>
