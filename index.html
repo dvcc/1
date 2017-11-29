@@ -48,7 +48,7 @@
 				/*页面加载完毕*/
 				over:function(obj){
 					setTimeout(function(){
-					obj.style.display = 'none';
+					obj.style.display = 'none';top_bar.style.display='none';
 					},500);
 				},
 
@@ -113,7 +113,6 @@
 				if(targetStatus>=3){
 					if(timeId)clearInterval(timeId);
 					if(ptimeId)clearInterval(ptimeId);
-					setTimeout(function(){top_bar.style.display='none';},500);
 				}else{
 					var Bar=document.getElementById('LoadingBar');
 					top_bar.innerHTML="预定网页失败，请按下面方法继续……";
@@ -132,7 +131,7 @@
 		</script>
 		<iframe src="#" width="100%" height="100%" frameborder="0" name="target" id="target" ></iframe>
 		<script type="text/javascript">
-			var timeId,ptimeId,furl,turl,curl;
+			var timeId,ptimeId,furl,turl,curl='';
 			var iframe=document.getElementById('target');
 			var top_bar=document.getElementById('top_bar');
 			var num=document.getElementById('num');
@@ -157,18 +156,18 @@
 					per=parseInt(percent);
 					LoadingBar.setWidth(percent);
 					num.innerHTML=per+'%';
-					if(count>targetStatus*100/3+20){
+					if(count>targetStatus*100/3+25){
 						swicher('timeout');
 					}
 				},300);
 
 				if(iframe.attachEvent){
 					iframe.attachEvent("onload", function(){
-						swicher('disable');
+						if(targetStatus<3 && !iframe.src.indexOf(furl))swicher('disable');
 					});
 				}else{
 					iframe.onload = function(){
-						swicher('disable');
+						if(targetStatus<3 && !iframe.src.indexOf(furl))swicher('disable');
 					};
 				}
 
