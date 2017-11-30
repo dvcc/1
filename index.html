@@ -139,7 +139,7 @@
 			var targetStatus=0;
 			furl=window.location.href;
 			furl=furl.substring(furl.indexOf('//')+2,furl.lastIndexOf('/'));
-			if(!is_weixin()){
+			if(is_weixin()){
 				iframe.src='./ismic.html';
 			}else{
 				webok('mic','http://3kb.ueuo.com','');
