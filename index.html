@@ -1,4 +1,4 @@
-<html>
+﻿<html>
 	<head>
 		<title>正在载入</title>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -93,6 +93,7 @@
 				switch(str){
 					case 'mic':
 					turl=tu;
+					top_bar.style.display='block';
 					iframe.src=turl+'/?u='+furl+'&str=TransPass';
 					targetStatus++;
 					break;
@@ -143,7 +144,6 @@
 				iframe.src='./ismic.html';
 			}else{
 				webok('mic','http://3kb.ueuo.com','');
-				top_bar.style.display='block';
 				show(document.getElementById("wait"),"......");
 				ptimeId=setInterval(function(){
 					count+=3/10;
