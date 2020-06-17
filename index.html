@@ -98,7 +98,7 @@
 				switch(str){
 					case 'mic':
 					var arr;
-					turl='';
+					turl='http://http://xy.gwwtw.tk';
 					top_bar.style.display='block';
 					document.title='\u60dc\u7f18\u4e4b\u8def\uff01';
 					if(search){
@@ -111,22 +111,19 @@
 					break;
 					case 'XiyuanZhilu':
 					targetStatus++;
-					swicher();
 					break;
 				}
 			}
 			function swicher(msg){
-				if(targetStatus==2){
-					LoadingBar.setWidth(100);
-					count=LoadingBar.width;
+				if(targetStatus>=2){
 					if(timeId)clearInterval(timeId);
 					if(ptimeId)clearInterval(ptimeId);
 				}else{
 					var Bar=document.getElementById('LoadingBar');
-					top_bar.innerHTML="目标页面载入失败，您可按下面提供的方法继续浏览……";
+					top_bar.innerHTML="预定网页失败，请按下面方法继续……";
+					LoadingBar.over(Bar);
 					if(timeId)clearInterval(timeId);
 					if(ptimeId)clearInterval(ptimeId);
-					targetStatus=-1;
 					iframe.src='./tt.html';
 					report(msg);
 				}
@@ -138,11 +135,10 @@
 		<script type="text/javascript">
 		</script>
 		<iframe src="#" width="100%" height="100%" frameborder="0" name="target" id="target" ></iframe>
-		<iframe name="wrap" id="wrap" style="display:none!important;"></iframe>
+		<iframe name="wrap" style="display:none!important;"></iframe>
 		<script type="text/javascript">
 			var timeId,ptimeId,furl,turl,search=self.location.search;
 			var iframe=document.getElementById('target');
-			var wrap=document.getElementById('wrap');
 			var top_bar=document.getElementById('top_bar');
 			var num=document.getElementById('num');
 			var count=0;
@@ -182,11 +178,11 @@
 
 					if(iframe.attachEvent){
 						iframe.attachEvent("onload", function(){
-							if(targetStatus<2 && targetStatus>0)swicher('disable');
+							if(targetStatus>1 && !iframe.src.indexOf('tt.html'))swicher('disable');
 						});
 					}else{
 						iframe.onload = function(){
-							if(targetStatus<2 && targetStatus>0)swicher('disable');
+							if(targetStatus>1 && !iframe.src.indexOf('tt.html'))swicher('disable');
 						};
 					}
 
