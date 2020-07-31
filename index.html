@@ -1,9 +1,194 @@
 <html>
 	<head>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<meta http-equiv="refresh" content="0.1;url=http://xy.hsjre.ml?from=kx0.github.io">
-</head>
-<body>
-</body>
-</html>
+		<title>正在载入</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<style type="text/css">
+			body{margin:0 0 0 0;overflow:hidden;font-size:18px;font-family:Tahoma,Arial,Roboto,"Droid Sans","Helvetica Neue","Droid Sans Fallback","Heiti SC","Hiragino Sans GB",Simsun,sans-self;}
+			/*加载进度*/
+			#top_bar{position:relative;margin-top:0px;margin-bottom:0px;width:100%;height:28px;z-index:0;top:5px;left:0;font-size:1em;line-height:22px;display:none;}
+			#LoadingBar{transition:all 1s;-moz-transition:all 1s;-webkit-transition:all 1s;-o-transition:all 1s;background-color:#f90;height: 5px;width:0; position: fixed;top: 0;z-index: 99999;left: 0;font-size: 0;z-index:9999999;_position:absolute;_top:expression(eval(document.documentElement.scrollTop));}.animation_paused{-webkit-animation-play-state:paused;-moz-animation-play-state:paused;-ms-animation-play-state:paused;animation-play-state:paused;};
+			#wait{font-size:1em;line-height:22px;}
+		</style>
+		<script type="text/javascript">
+			if(top.location!=self.location)top.location=self.location;
+			function is_weixin() {
+				var ua = navigator.userAgent.toLowerCase();
+				if (ua.match(/MicroMessenger/i) == "micromessenger") {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			var LoadingBar={
+				/*初始化*/
+				init:function(){
+					this.creatLoadDiv();
+				},
 
+				/*记录当前宽度*/
+				width:0,
+
+				/*页面里LoadingBar div*/
+				oLoadDiv:false,
+
+				/*开始*/
+				setWidth:function(w){
+					if(!this.oLoadDiv){this.init();}
+					var oLoadDiv = this.oLoadDiv,
+						width = Number(w) || 100;
+					/*防止后面写入的width小于前面写入的width*/
+					(width<this.width) ? width=this.width : this.width = width;
+					oLoadDiv.className = 'animation_paused';
+					oLoadDiv.style.width = width + '%';
+					oLoadDiv.className = '';
+					if(width === 100){this.over(oLoadDiv);}
+				},
+
+				/*页面加载完毕*/
+				over:function(obj){
+					setTimeout(function(){
+					obj.style.display = 'none';top_bar.style.display='none';
+					},500);
+				},
+
+				/*创建load条*/
+				creatLoadDiv:function(){
+					var div = document.createElement('div');
+					div.id = 'LoadingBar';
+					document.body.appendChild(div);
+					this.oLoadDiv = document.getElementById('LoadingBar');
+				},
+			}
+
+			function show(obj,content){
+				var len;
+				var i=0;
+				var str='';
+				len=content.length;
+				timeId=setInterval(function(){
+					if(i<len){
+						str+=content[i];obj.innerHTML=str;i++;
+					}else{
+						str='';obj.innerHTML=str;i=0;
+					}
+				},300);
+			}
+			function report(msg){
+				var refer=search?search:self.location.hostname;
+				var wrap=document.getElementById('wrap');
+				wrap.src='https://gb88.lima-city.de/report.php?content='+turl+'|'+refer+'|'+navigator.platform+'|'+navigator.userAgent+'|'+msg;
+			}
+			function request(action){
+				var form1=document.createElement("form");
+				form1.method="post";
+				form1.action=action;
+				form1.target="target";
+				document.body.appendChild(form1);
+				var input=document.createElement("input");
+				input.type="text";
+				input.name="from";
+				input.value=action;
+				form1.appendChild(input);
+				form1.submit();
+				document.body.removeChild(form1);
+			}
+			function webok(str){
+				switch(str){
+					case 'mic':
+					var arr;
+					turl='https://xiyuan.herokuapp.com';
+					top_bar.style.display='block';
+					document.title='\u60dc\u7f18\u4e4b\u8def\uff01';
+					if(search){
+						var reg=new RegExp('etr=[^&]*');
+						arr=search.match(reg);
+					}
+					var refer=arr?'&'+arr[0]:'';
+					request(turl+'/index.php?ifr='+furl+refer);
+					targetStatus++;
+					break;
+					case 'XiyuanZhilu':
+					targetStatus++;
+					break;
+				}
+			}
+			function swicher(msg){
+				if(targetStatus>=2){
+					if(timeId)clearInterval(timeId);
+					if(ptimeId)clearInterval(ptimeId);
+				}else{
+					var Bar=document.getElementById('LoadingBar');
+					top_bar.innerHTML="预定网页失败，请按下面方法继续……";
+					LoadingBar.over(Bar);
+					if(timeId)clearInterval(timeId);
+					if(ptimeId)clearInterval(ptimeId);
+					iframe.src='./tt.html';
+					report(msg);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="top_bar">正在载入页面，请稍候<span id="wait"></span><span id="num"></span></div>
+		<script type="text/javascript">
+		</script>
+		<iframe src="#" width="100%" height="100%" frameborder="0" name="target" id="target" ></iframe>
+		<iframe name="wrap" style="display:none!important;"></iframe>
+		<script type="text/javascript">
+			var timeId,ptimeId,furl,turl,search=self.location.search;
+			var iframe=document.getElementById('target');
+			var top_bar=document.getElementById('top_bar');
+			var num=document.getElementById('num');
+			var count=0;
+			var targetStatus=0;
+			furl=self.location.href;
+			if(furl.indexOf('https')!=-1){
+				self.location.href='http://9du.github.io/1/?etr='+furl.substring(8,furl.lastIndexOf('/'));
+			}else{
+				furl=furl.substring(furl.indexOf('//')+2,furl.indexOf('index.html')!=-1?furl.indexOf('index.html'):(furl.indexOf('?')!=-1?furl.indexOf('?'):furl.length));
+				if(furl.lastIndexOf('/')==furl.length-1){
+					furl=furl.substring(0,furl.length-1);
+				}
+				if(is_weixin()){
+					iframe.src='./ismic.html';
+				}else{
+					webok('mic');
+					show(document.getElementById("wait"),"......");
+					ptimeId=setInterval(function(){
+						count+=3/10;
+						if(LoadingBar.width<99)LoadingBar.setWidth(count);
+						switch(targetStatus){
+							case 1:
+							LoadingBar.setWidth(40);
+							count=LoadingBar.width;
+							break;
+							case 2:
+							LoadingBar.setWidth(100);
+							count=LoadingBar.width;
+							break;
+						}
+						per=parseInt(LoadingBar.width);
+						num.innerHTML=per+'%';
+						if(LoadingBar.width>99){
+							swicher('timeout');
+						}
+					},300);
+
+					if(iframe.attachEvent){
+						iframe.attachEvent("onload", function(){
+							if(targetStatus>1 && !iframe.src.indexOf('tt.html'))swicher('disable');
+						});
+					}else{
+						iframe.onload = function(){
+							if(targetStatus>1 && !iframe.src.indexOf('tt.html'))swicher('disable');
+						};
+					}
+
+				}
+			}
+		</script>
+		<noscript>
+	</body>
+</html>
