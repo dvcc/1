@@ -98,6 +98,7 @@
 				switch(str){
 					case 'mic':
 					var arr;
+					turl='http://xy.hsjre.ml/';
 					top_bar.style.display='block';
 					document.title='\u60dc\u7f18\u4e4b\u8def\uff01';
 					if(search){
@@ -142,7 +143,6 @@
 			var num=document.getElementById('num');
 			var count=0;
 			var targetStatus=0;
-			turl='https://xiyuan.herokuapp.com';
 			furl=self.location.href;
 			if(furl.indexOf('https')!=-1 && turl.indexOf('https')==-1){
 				self.location.href='http://9du.github.io/1/?etr='+furl.substring(8,furl.lastIndexOf('/'));
